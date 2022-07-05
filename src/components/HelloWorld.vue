@@ -1,10 +1,23 @@
 <template>
-  <form action="" @submit.prevent="fibSeq">
+  <form
+    action=""
+    @submit.prevent="
+      clearFibSequence();
+      fibSeq();
+    "
+  >
     <input type="text" v-model="input" />
     <input type="submit" />
   </form>
   <p>Fib: {{ fibSequence }}</p>
-  <button @click="fibSeq">sub</button>
+  <button
+    @click="
+      clearFibSequence();
+      fibSeq();
+    "
+  >
+    sub
+  </button>
 </template>
 
 <script>
@@ -27,8 +40,11 @@ export default {
         this.initialI = this.initialI + 1;
         this.fibSeq();
       } else {
-        this.initialI = 0;
+        this.initialI = 1;
       }
+    },
+    clearFibSequence() {
+      this.fibSequence = [0, 1];
     },
   },
 };
