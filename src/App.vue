@@ -1,13 +1,23 @@
 <template>
-  <HelloWorld />
+  <fibSequence v-if="displayfibSequence" />
+  <nSquared v-if="displaynSquared" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import fibSequence from "./components/fibSequence.vue";
+import nSquared from "./components/nSquared.vue";
+
 export default {
   name: "App",
+  data() {
+    return {
+      displayfibSequence: false,
+      displaynSquared: true,
+    };
+  },
   components: {
-    HelloWorld,
+    fibSequence,
+    nSquared,
   },
 };
 </script>
