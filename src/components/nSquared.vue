@@ -1,10 +1,10 @@
 <template>
   <h1>The sum of your odds</h1>
-  <h3>Input how many odd numbers you want to test</h3>
+  <h3>Input how many odd numbers you want to test (less than 10,000)</h3>
   <form
     action=""
     @submit.prevent="
-      clearFibSequence();
+      clearInitialOdd();
       nSquaredOdds(parseInt(this.input), 10);
     "
   >
@@ -13,15 +13,7 @@
     <input type="submit" />
   </form>
   <p>Sum of all odds up to the place of {{ input }}: {{ solution }}</p>
-  <p class="minimize">All Odds: {{ oddArray }}</p>
-  <!-- <button
-    @click="
-      clearFibSequence();
-      fibSeq();
-    "
-  >
-    sub
-  </button> -->
+  <p class="minimize"><strong>All Odds:</strong> {{ oddArray }}</p>
 </template>
 
 <script>
@@ -38,13 +30,17 @@ export default {
   methods: {
     nSquaredOdds(n) {
       this.solution = n * n;
-      for (let i = 0; i <= n; i++) {
-        this.oddArray.push(this.initialOdd);
-        this.initialOdd = this.initialOdd + 2;
+      if (n < 10000) {
+        for (let i = 0; i <= n; i++) {
+          this.oddArray.push(this.initialOdd);
+          this.initialOdd = this.initialOdd + 2;
+        }
+      } else {
       }
     },
-    clearFibSequence() {
-      this.fibSequence = [0, 1];
+    clearInitialOdd() {
+      this.initialOdd = 1;
+      this.oddArray = [];
     },
   },
 };
